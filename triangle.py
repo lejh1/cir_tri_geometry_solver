@@ -1,4 +1,5 @@
 # Hold obvious parameters for the Triangle.
+from calcs import *
 class Triangle():
     def __init__(self):
         # initialize all empty parameters
@@ -10,13 +11,15 @@ class Triangle():
             "v1":None,
             "v2":None,
             "v3":None,
+            "ar_tri": 0,
+            "per_tri":0
         }
 
     # def checkLawOfSines(self):
         # Need to fill 
 
     def sumOfAllAngles(self):
-        if self.triValues["angles"].count(0) == 2:
+        if self.triValues["angles"].count(0) == 1:
             self.triValues["angles"][self.triValues["angles"].index(0)] = 180 - sum(self.triValues["angles"])
 
     def checkIfRA(self): # Check If Right Angle 
@@ -44,5 +47,14 @@ class Triangle():
         else: 
             return False
         
+    def findPerimeter(self):
+        if not self.triValues["per_tri"]:
+            if not self.triValues["s1"] and not self.triValues["s2"] and not self.triValues["s3"]:
+                self.triValues["per_tri"] = self.triValues["s1"] + self.triValues["s2"] + self.triValues["s3"]
+
     def printValues(self):
         print(self.triValues)
+
+    def simpleRun(self):
+        # self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
+        self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])

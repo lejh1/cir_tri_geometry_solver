@@ -21,24 +21,21 @@ class Inputs():
     def set_value(self, name, value): # check if name is valid and if it is then replace it 
         if name in self.inputs:
             self.inputs[name] = value
-        elif self.Triangle.checkValueExists(name):
+        elif self.Triangle.checkValueExist(name):
             self.Triangle.setValue(name, value)
-        elif self.Circle.checkValueExists(name):
+        elif self.Circle.checkValueExist(name):
             self.Circle.setValue(name, value)
         else:
             print("That parameter does not exist. Choose a new one.\n")
     
     def set_vertex(self, name, x, y):
-        if self.Triangle.checkValueExists(name):
+        if self.Triangle.checkValueExist(name):
             self.Triangle.setVertex(name, x, y)
         else:
             print("That parameter does not exist. Choose a new one.\n")
 
-    def set_center(self, name, x , y): 
-        if self.Circle.checkValueExists(name):
-            self.Circle.setVertex(name, x, y)
-        else:
-            print("That parameter does not exist. Choose a new one.\n")
+    def set_center(self, x , y): 
+            self.Circle.setCenter(x, y)
 
     def set_intersection_points(self, name, x, y):
         if name in self.inputs:
@@ -48,6 +45,6 @@ class Inputs():
 
     def printValues(self):
         print(self.inputs)
-        print(self.Triangle.printValues())
-        print(self.Circle.printValues())
+        self.Triangle.printValues()
+        self.Circle.printValues()
 
