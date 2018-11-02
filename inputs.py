@@ -18,31 +18,36 @@ class Inputs():
         self.Triangle = Triangle()
         self.Circle = Circle()
     
-def set_value(name, value): # check if name is valid and if it is then replace it 
-    if name in self.inputs:
-        self.inputs[name] = value
-    elif self.Triangle.checkValueExists(name):
-        self.Triangle.setValue(name, value)
-    elif self.Circle.checkValueExists(name):
-        self.Circle.setValue(name, value)
-    else:
-        print("That parameter does not exist. Choose a new one.\n")
-   
-def set_vertex(name, x, y):
-    if self.Triangle.checkValueExists(name):
-        self.Triangle.setVertex(name, x, y)
-    else:
-        print("That parameter does not exist. Choose a new one.\n")
+    def set_value(self, name, value): # check if name is valid and if it is then replace it 
+        if name in self.inputs:
+            self.inputs[name] = value
+        elif self.Triangle.checkValueExists(name):
+            self.Triangle.setValue(name, value)
+        elif self.Circle.checkValueExists(name):
+            self.Circle.setValue(name, value)
+        else:
+            print("That parameter does not exist. Choose a new one.\n")
+    
+    def set_vertex(self, name, x, y):
+        if self.Triangle.checkValueExists(name):
+            self.Triangle.setVertex(name, x, y)
+        else:
+            print("That parameter does not exist. Choose a new one.\n")
 
-def set_center(name, x , y): 
-    if self.Circle.checkValueExists(name):
-        self.Circle.setVertex(name, x, y)
-    else:
-        print("That parameter does not exist. Choose a new one.\n")
+    def set_center(self, name, x , y): 
+        if self.Circle.checkValueExists(name):
+            self.Circle.setVertex(name, x, y)
+        else:
+            print("That parameter does not exist. Choose a new one.\n")
 
-def set_intersection_points(name, x, y):
-    if name in self.inputs:
-        self.inputs[name] = (x,y)
-    else:
-        print("That parameter does not exist. Choose a new one.\n")
+    def set_intersection_points(self, name, x, y):
+        if name in self.inputs:
+            self.inputs[name] = (x,y)
+        else:
+            print("That parameter does not exist. Choose a new one.\n")
+
+    def printValues(self):
+        print(self.inputs)
+        print(self.Triangle.printValues())
+        print(self.Circle.printValues())
 

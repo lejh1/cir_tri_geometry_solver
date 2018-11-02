@@ -3,7 +3,7 @@ import math
 
 class Circle():
     def __init__(self, *args):
-        self.cirValues{
+        self.cirValues = {
             "r": 0,
             "c": None,
             "d": 0,
@@ -12,11 +12,11 @@ class Circle():
         }
 
     def getRfromD(self):
-        if self.cirValues["r"] && not self.cirValues["d"]:
+        if self.cirValues["r"] and not self.cirValues["d"]:
             self.cirValues["d"] = 2*self.cirValues["r"]
     
     def getDfromR(self):
-        if self.cirValues["d"] && not self.cirValues["r"]:
+        if self.cirValues["d"] and not self.cirValues["r"]:
             self.cirValues["r"] = self.cirValues["d"]/2
 
     def findArea(self):
@@ -41,3 +41,7 @@ class Circle():
             return True
         else: 
             return False
+        
+    def printValues(self):
+        print(self.cirValues)
+

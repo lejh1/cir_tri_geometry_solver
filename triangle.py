@@ -2,7 +2,7 @@
 class Triangle():
     def __init__(self):
         # initialize all empty parameters
-        self.triValues{
+        self.triValues = {
             "s1":0,
             "s2":0,
             "s3":0,
@@ -12,7 +12,7 @@ class Triangle():
             "v3":None,
         }
 
-    def checkLawOfSines(self):
+    # def checkLawOfSines(self):
         # Need to fill 
 
     def sumOfAllAngles(self):
@@ -39,7 +39,10 @@ class Triangle():
             self.triValues["angles"][2] = value
 
     def checkValueExist(self, name):
-        if name in self.triValues || name == "a1" || name == "a2" || name == "a2":
+        if name in self.triValues or name == "a1" or name == "a2" or name == "a2":
             return True
         else: 
             return False
+        
+    def printValues(self):
+        print(self.triValues)
