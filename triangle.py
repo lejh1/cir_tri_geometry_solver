@@ -40,6 +40,16 @@ class Triangle():
             self.triValues["angles"][1] = value
         elif(name == "a3"):
             self.triValues["angles"][2] = value
+    
+    def getValue(self, name):
+        if name in self.triValues:
+            return self.triValues[name]
+        elif(name == "a1"):
+            return self.triValues["angles"][0] 
+        elif(name == "a2"):
+            return self.triValues["angles"][1] 
+        elif(name == "a3"):
+            return self.triValues["angles"][2] 
 
     def checkValueExist(self, name):
         if name in self.triValues or name == "a1" or name == "a2" or name == "a2":
@@ -58,3 +68,13 @@ class Triangle():
     def simpleRun(self):
         # self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
         self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
+
+    def getMissingSides(self):
+        missing = list()
+        if self.triValues["s1"] == 0:
+            missing.append("s1")
+        if self.triValues["s2"] == 0:
+            missing.append("s2")
+        if self.triValues["s3"] == 0:
+            missing.append("s3")
+        return missing

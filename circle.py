@@ -36,6 +36,10 @@ class Circle():
         if name in self.cirValues:
             self.cirValues[name] = value
 
+    def getValue(self, name):
+        if name in self.cirValues:
+            return self.cirValues[name] 
+
     def checkValueExist(self, name):
         if name in self.cirValues:
             return True

@@ -47,4 +47,15 @@ class Inputs():
         print(self.inputs)
         self.Triangle.printValues()
         self.Circle.printValues()
+    
+    def get_value(self, name):
+        if name in self.inputs:
+            return self.inputs[name] 
+        elif self.Triangle.checkValueExist(name):
+            return self.Triangle.getValue(name)
+        elif self.Circle.checkValueExist(name):
+            return self.Circle.getValue(name)
+        else:
+            print("That parameter does not exist. Choose a new one.\n")
+
 
