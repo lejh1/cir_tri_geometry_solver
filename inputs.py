@@ -57,5 +57,22 @@ class Inputs():
             return self.Circle.getValue(name)
         else:
             print("That parameter does not exist. Choose a new one.\n")
+    
+    def get_all(self):
+        new_dict = self.inputs
+        new_dict.update(self.Triangle.triValues)
+        new_dict.update(self.Circle.cirValues)
+        return new_dict
 
+    def getIPs(self):
+        count = 0
+        for i in range(1,4):
+            s = "ip" + str(i)
+            if self.inputs[s]:
+                count += 1
+        return count
 
+    def startBeepBoop(self):
+        if getIps()==1:
+
+            print(1)

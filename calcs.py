@@ -7,3 +7,6 @@ def lawOfCosinesSSS(a,b,c): # a is the side the cooresponds to the angle we want
 
 def lawOfCosinesSSA(A,b,c): # a is the angle that cooresponds to the side we want to find
     return round(math.sqrt(pow(b,2)+pow(c,2)-(2*b*c*math.cos(math.radians(A)))),2)
+
+def distanceFormula(x1,y1,x2,y2):
+    return math.hypot(x2-x1, y2-y1)

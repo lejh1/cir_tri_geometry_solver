@@ -3,11 +3,12 @@ from calcs import *
 class Triangle():
     def __init__(self):
         # initialize all empty parameters
+        # Parameters stored in a dict for easy access search (Yay O(1) search time!)
         self.triValues = {
             "s1":0,
             "s2":0,
             "s3":0,
-            "angles":[0,0,0], # a[0] = a1 etc
+            "angles":[0,0,0], # a[0] = "a1" etc
             "v1":None,
             "v2":None,
             "v3":None,
@@ -18,19 +19,23 @@ class Triangle():
     # def checkLawOfSines(self):
         # Need to fill 
 
+    # If two angles are known, fill in the last one 
     def sumOfAllAngles(self):
         if self.triValues["angles"].count(0) == 1:
             self.triValues["angles"][self.triValues["angles"].index(0)] = 180 - sum(self.triValues["angles"])
 
-    def checkIfRA(self): # Check If Right Angle 
+    # Check If Right Angle 
+    def checkIfRA(self): 
         if 90 in self.angles:
             return True
         else:
             return False
-        
+
+    # Sets the vertex of the given name of a Triangle parameter
     def setVertex(self, name, x, y):
         self.triValues[name] = (x,y)
 
+    # Sets the value of the given name of a Triangle parameter
     def setValue(self, name, value):
         if name in self.triValues:
             self.triValues[name] = value
@@ -41,6 +46,7 @@ class Triangle():
         elif(name == "a3"):
             self.triValues["angles"][2] = value
     
+    # Returns the value of the given name of a Triangle parameter
     def getValue(self, name):
         if name in self.triValues:
             return self.triValues[name]
@@ -51,17 +57,22 @@ class Triangle():
         elif(name == "a3"):
             return self.triValues["angles"][2] 
 
+    # Checks if the name given exists as a parameter of the Triangle Class
     def checkValueExist(self, name):
         if name in self.triValues or name == "a1" or name == "a2" or name == "a2":
             return True
         else: 
             return False
-        
+    
     def findPerimeter(self):
         if not self.triValues["per_tri"]:
             if not self.triValues["s1"] and not self.triValues["s2"] and not self.triValues["s3"]:
                 self.triValues["per_tri"] = self.triValues["s1"] + self.triValues["s2"] + self.triValues["s3"]
 
+    # def findArea(self): 
+        # need to do this one still 
+
+    # Prints all triangle values as a dict
     def printValues(self):
         print(self.triValues)
 
@@ -69,6 +80,7 @@ class Triangle():
         # self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
         self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
 
+    # Returns a list of the sides that are missing 
     def getMissingSides(self):
         missing = list()
         if self.triValues["s1"] == 0:
@@ -77,4 +89,15 @@ class Triangle():
             missing.append("s2")
         if self.triValues["s3"] == 0:
             missing.append("s3")
+        return missing
+
+    # Returns a list of the angles that are missing 
+    def getMissingAngles(self): 
+        missing = list()
+        if self.triValues["angles"][0] == 0:
+            missing.append("a1")
+        if self.triValues["angles"][1] == 0:
+            missing.append("a2")
+        if self.triValues["angles"][2] == 0:
+            missing.append("a3")
         return missing
