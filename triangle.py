@@ -171,11 +171,17 @@ class Triangle():
                 self.triValues["s3"] = lawOfCosinesSAS(self.triValues["angles"][2],self.triValues["s1"],self.triValues["s2"])
             # SSA
             elif not self.triValues["angles"][1] and self.triValues["s1"] and self.triValues["s2"] and self.triValues["angles"][0]: # abA 
+                self.triValues["angles"][1] = lawOfSinesSSA(self.triValues["s1"],self.triValues["s2"],self.triValues["angles"][0]) 
             elif not self.triValues["angles"][2] and self.triValues["s1"] and self.triValues["s3"] and self.triValues["angles"][0]: # acA 
+                self.triValues["angles"][2] = lawOfSinesSSA(self.triValues["s1"], self.triValues["s3"],  self.triValues["angles"][0])
             elif not self.triValues["angles"][1] and self.triValues["s3"] and self.triValues["s2"] and self.triValues["angles"][2]: # cbC
+                self.triValues["angles"][1] =  lawOfSinesSSA(self.triValues["s3"], self.triValues["s2"],  self.triValues["angles"][2])
             elif not self.triValues["angles"][0] and self.triValues["s3"] and self.triValues["s1"] and self.triValues["angles"][2]: # caC
+                self.triValues["angles"][0] =  lawOfSinesSSA(self.triValues["s3"], self.triValues["s1"],  self.triValues["angles"][2])
             elif not self.triValues["angles"][2] and self.triValues["s2"] and self.triValues["s3"] and self.triValues["angles"][1]: # bcB
+                self.triValues["angles"][2] =  lawOfSinesSSA(self.triValues["s2"], self.triValues["s3"],  self.triValues["angles"][1])
             elif not self.triValues["angles"][0] and self.triValues["s2"] and self.triValues["s1"] and self.triValues["angles"][1]: # baB
+                self.triValues["angles"][0] =  lawOfSinesSSA(self.triValues["s2"], self.triValues["s1"],  self.triValues["angles"][1])
         # 1 side 2 angles 
         # 2 sides 2 angle
         if self.sumOfAllAngles(): # if all angles exist 
