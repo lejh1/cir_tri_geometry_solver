@@ -11,6 +11,9 @@ def lawOfCosinesSAS(A,b,c): # a is the angle that cooresponds to the side we wan
 def lawOfSinesSSA(a,b,A):
     return round(math.degrees(math.asin(((b*math.sin(math.radians(A)))/a))),2) # may need to adjust for boundary error 
 
+def lawOfSinesAAS(A,b,B):
+    return round((b*math.sin(math.radians(A)))/math.sin(math.radians(B)),2) # may need to adjust for boundary error 
+
 def distanceFormula(x1,y1,x2,y2):
     return math.hypot(x2-x1, y2-y1)
 
