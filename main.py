@@ -3,16 +3,19 @@ from calcs import *
 
 def main():
     inputs = Inputs()
-    inputs.set_value("a1", 90)
-    inputs.set_value("ip3", (2,3))
-    inputs.set_value("ip2", (3,3))
-    inputs.set_value("ip1", (2,4))
+    # inputs.set_value("a1", 90)
+    # inputs.set_value("a1", 90)
+    # inputs.set_value("a1", 90)
+
+    inputs.set_value("v3", (3,0))
+    inputs.set_value("v2", (3,3))
+    inputs.set_value("v1", (0,0))
     # inputs.Triangle.simpleRun()
     # inputs.printValues()
-    print(inputs.get_value("a1"))
-    print(inputs.get_value("s1"))
-    print(inputs.getIPs())
-    print(distanceFormula(inputs.get_value("ip1")[0],inputs.get_value("ip1")[1],inputs.get_value("ip2")[0],inputs.get_value("ip2")[1]))
+    # print(inputs.get_value("a1"))
+    # print(inputs.get_value("s1"))
+    print(inputs.Triangle.solve())
+    print(inputs.get_all())
 
     
 if __name__ == '__main__':

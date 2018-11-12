@@ -23,6 +23,9 @@ class Triangle():
     def sumOfAllAngles(self):
         if self.triValues["angles"].count(0) == 1:
             self.triValues["angles"][self.triValues["angles"].index(0)] = 180 - sum(self.triValues["angles"])
+            return True
+        else:
+            return False
 
     # Check If Right Angle 
     def checkIfRA(self): 
@@ -76,28 +79,90 @@ class Triangle():
     def printValues(self):
         print(self.triValues)
 
-    def simpleRun(self):
-        # self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
-        self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
-
     # Returns a list of the sides that are missing 
     def getMissingSides(self):
         missing = list()
-        if self.triValues["s1"] == 0:
-            missing.append("s1")
-        if self.triValues["s2"] == 0:
-            missing.append("s2")
-        if self.triValues["s3"] == 0:
-            missing.append("s3")
+        for i in range(1,4):
+            if self.triValues["s"+str(i)] == None:
+                missing.append("s"+str(i))
+        # if self.triValues["s1"] == 0:
+        #     missing.append("s1")
+        # if self.triValues["s2"] == 0:
+        #     missing.append("s2")
+        # if self.triValues["s3"] == 0:
+        #     missing.append("s3")
         return missing
 
     # Returns a list of the angles that are missing 
     def getMissingAngles(self): 
         missing = list()
-        if self.triValues["angles"][0] == 0:
-            missing.append("a1")
-        if self.triValues["angles"][1] == 0:
-            missing.append("a2")
-        if self.triValues["angles"][2] == 0:
-            missing.append("a3")
+        for i in range(3):
+            if self.triValues["angles"][i] == None:
+                missing.append("a"+str(i+1))
+        # if self.triValues["angles"][0] == 0:
+        #     missing.append("a1")
+        # if self.triValues["angles"][1] == 0:
+        #     missing.append("a2")
+        # if self.triValues["angles"][2] == 0:
+        #     missing.append("a3")
         return missing
+
+    # Returns a list of the angles that are missing 
+    def getMissingVertices(self): 
+        missing = list()
+        for i in range(1,4):
+            if self.triValues["v"+str(i)] == None:
+                missing.append("v"+str(i))
+        # if self.triValues["v1"] == None:
+        #     missing.append("v1")
+        # if self.triValues["v2"] == None:
+        #     missing.append("v2")
+        # if self.triValues["v3"] == None:
+        #     missing.append("v3")
+        return missing
+
+
+    # Returns number of found sides
+    def countSides(self):
+        count = 0
+        if self.triValues["s1"] != 0:
+            count+=1
+        if self.triValues["s2"] != 0:
+            count+=1
+        if self.triValues["s3"] != 0:
+            count+=1
+        return count
+
+    # Returns number of found angles
+    def countAngles(self): 
+        count = 0
+        if self.triValues["angles"][0] != 0:
+            count+=1
+        if self.triValues["angles"][1] != 0:
+            count+=1
+        if self.triValues["angles"][2] != 0:
+            count+=1
+        return count
+
+    def solveSidesWVertices(self):
+        if self.triValues["v1"] and self.triValues["v2"]:
+            self.triValues["s3"] = distanceFormula(self.triValues["v1"][0],self.triValues["v1"][1],self.triValues["v2"][0],self.triValues["v2"][1])
+        if self.triValues["v3"] and self.triValues["v2"]:
+            self.triValues["s1"] = distanceFormula(self.triValues["v2"][0],self.triValues["v2"][1],self.triValues["v3"][0],self.triValues["v3"][1])
+        if self.triValues["v1"] and self.triValues["v3"]:
+            self.triValues["s2"] = distanceFormula(self.triValues["v1"][0],self.triValues["v1"][1],self.triValues["v3"][0],self.triValues["v3"][1])
+
+    def solve(self):
+        self.solveSidesWVertices()
+        if self.sumOfAllAngles():
+            if self.countSides() == 1:
+                print(1)
+            if self.countSides() == 2:
+                print(1)
+            print(1)
+        elif self.countSides()==3:
+            self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
+            self.triValues["a2"] = lawOfCosinesSSS(self.triValues["s2"],self.triValues["s3"],self.triValues["s1"])
+            self.triValues["a3"] = lawOfCosinesSSS(self.triValues["s3"],self.triValues["s1"],self.triValues["s2"])
+        elif self.countSides()
+        # self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])

@@ -72,7 +72,11 @@ class Inputs():
                 count += 1
         return count
 
-    def startBeepBoop(self):
-        if getIps()==1:
-
-            print(1)
+    # def startBeepBoop(self):
+    #     if getIps()==1:
+    #         if self.Triangle.sumOfAllAngles():
+    #             print(1)
+    #         if self.Triangle.countSides()==3:
+    #             if self.Triangle.countAngles()==
+    #             print(1)
+            # Solve triangle before other stuff?
