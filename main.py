@@ -6,7 +6,7 @@ def main():
     # inputs.set_value("a1", 90)
     # inputs.set_value("a1", 90)
     # inputs.set_value("a1", 90)
-
+    print(lawOfSinesSSA(3,4,45))
     inputs.set_value("v3", (3,0))
     inputs.set_value("v2", (3,3))
     inputs.set_value("v1", (0,0))

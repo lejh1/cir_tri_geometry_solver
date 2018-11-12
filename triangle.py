@@ -69,8 +69,13 @@ class Triangle():
     
     def findPerimeter(self):
         if not self.triValues["per_tri"]:
-            if not self.triValues["s1"] and not self.triValues["s2"] and not self.triValues["s3"]:
+            if self.triValues["s1"] and self.triValues["s2"] and self.triValues["s3"]:
                 self.triValues["per_tri"] = self.triValues["s1"] + self.triValues["s2"] + self.triValues["s3"]
+            
+    def findArea(self):
+        if not self.triValues["ar_tri"]:
+            if self.triValues["s1"] and self.triValues["s2"] and self.triValues["s3"]:
+                self.triValues["ar_tri"] = heronsFormula(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
 
     # def findArea(self): 
         # need to do this one still 
@@ -153,16 +158,38 @@ class Triangle():
             self.triValues["s2"] = distanceFormula(self.triValues["v1"][0],self.triValues["v1"][1],self.triValues["v3"][0],self.triValues["v3"][1])
 
     def solve(self):
-        self.solveSidesWVertices()
-        if self.sumOfAllAngles():
+        self.solveSidesWVertices() # Solve for any missing sides from vertices 
+        # whats left
+        # 2 side 1 angle
+        if self.countSides()==2 and self.countAngles()==1:
+            # SAS
+            if not self.triValues["s1"] and self.triValues["angles"][0] and self.triValues["s2"] and self.triValues["s3"]:
+                self.triValues["s1"] = lawOfCosinesSAS(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
+            elif not self.triValues["s2"] and self.triValues["angles"][1] and self.triValues["s1"] and self.triValues["s3"]:
+                self.triValues["s2"] = lawOfCosinesSAS(self.triValues["angles"][1],self.triValues["s3"],self.triValues["s1"])
+            elif not self.triValues["s3"] and self.triValues["angles"][2] and self.triValues["s2"] and self.triValues["s1"]:
+                self.triValues["s3"] = lawOfCosinesSAS(self.triValues["angles"][2],self.triValues["s1"],self.triValues["s2"])
+            # SSA
+            elif not self.triValues["angles"][1] and self.triValues["s1"] and self.triValues["s2"] and self.triValues["angles"][0]: # abA 
+            elif not self.triValues["angles"][2] and self.triValues["s1"] and self.triValues["s3"] and self.triValues["angles"][0]: # acA 
+            elif not self.triValues["angles"][1] and self.triValues["s3"] and self.triValues["s2"] and self.triValues["angles"][2]: # cbC
+            elif not self.triValues["angles"][0] and self.triValues["s3"] and self.triValues["s1"] and self.triValues["angles"][2]: # caC
+            elif not self.triValues["angles"][2] and self.triValues["s2"] and self.triValues["s3"] and self.triValues["angles"][1]: # bcB
+            elif not self.triValues["angles"][0] and self.triValues["s2"] and self.triValues["s1"] and self.triValues["angles"][1]: # baB
+        # 1 side 2 angles 
+        # 2 sides 2 angle
+        if self.sumOfAllAngles(): # if all angles exist 
             if self.countSides() == 1:
                 print(1)
             if self.countSides() == 2:
                 print(1)
+            self.findPerimeter()
             print(1)
-        elif self.countSides()==3:
-            self.triValues["a1"] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
-            self.triValues["a2"] = lawOfCosinesSSS(self.triValues["s2"],self.triValues["s3"],self.triValues["s1"])
-            self.triValues["a3"] = lawOfCosinesSSS(self.triValues["s3"],self.triValues["s1"],self.triValues["s2"])
-        elif self.countSides()
-        # self.triValues["s1"] = lawOfCosinesSSA(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
+        elif self.countSides()==3: # if all sides exist 
+            self.triValues["angles"][0] = lawOfCosinesSSS(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"])
+            self.triValues["angles"][1] = lawOfCosinesSSS(self.triValues["s2"],self.triValues["s3"],self.triValues["s1"])
+            self.triValues["angles"][2] = lawOfCosinesSSS(self.triValues["s3"],self.triValues["s1"],self.triValues["s2"])
+            self.findPerimeter()
+            self.findArea()
+        # elif self.countSides()
+        # self.triValues["s1"] = lawOfCosinesSAS(self.triValues["angles"][0],self.triValues["s2"],self.triValues["s3"])
