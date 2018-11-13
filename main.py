@@ -14,7 +14,7 @@ def main():
     # print(inputs.get_value("a1"))
     # print(inputs.get_value("s1"))
     inputs.Triangle.solve()
-    print(inputs.get_all())
+    print(inputs.Triangle.printValues())
 
     
 if __name__ == '__main__':
