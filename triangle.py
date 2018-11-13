@@ -1,5 +1,7 @@
 # Hold obvious parameters for the Triangle.
+# Not using the sympy Triangle class because it has limitations so decided to build my own class 
 from calcs import *
+from sympy.geometry import Triangle as t, Point
 class Triangle():
     def __init__(self):
         # initialize all empty parameters
@@ -15,9 +17,12 @@ class Triangle():
             "ar_tri": 0,
             "per_tri":0
         }
-
-    # def checkLawOfSines(self):
-        # Need to fill 
+        self.GeoT = None
+ 
+    # Creating a Triangle using the sympy module for the purposes of intersections and such 
+    def makeGeoT(self):
+        if not len(self.getMissingVertices()):
+            self.GeoT = t((self.triValues["v1"][0],self.triValues["v1"][1]),(self.triValues["v2"][0],self.triValues["v2"][1]),(self.triValues["v3"][0],self.triValues["v3"][1]))
 
     # If two angles are known, fill in the last one 
     def sumOfAllAngles(self):
@@ -140,6 +145,7 @@ class Triangle():
             self.triValues["s2"] = distanceFormula(self.triValues["v1"][0],self.triValues["v1"][1],self.triValues["v3"][0],self.triValues["v3"][1])
 
     def solve(self):
+        self.makeGeoT()
         self.solveSidesWVertices() # Solve for any missing sides from vertices 
         # 2 side 1 angle
         if self.countSides()==2 and self.countAngles()==1:

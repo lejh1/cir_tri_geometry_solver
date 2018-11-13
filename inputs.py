@@ -72,11 +72,29 @@ class Inputs():
                 count += 1
         return count
 
-    # def startBeepBoop(self):
-    #     if getIps()==1:
-    #         if self.Triangle.sumOfAllAngles():
-    #             print(1)
-    #         if self.Triangle.countSides()==3:
-    #             if self.Triangle.countAngles()==
-    #             print(1)
-            # Solve triangle before other stuff?
+    def noIps(self):
+        print(1)
+
+    def oneIps(self):
+        print(1)
+    
+    def twoIps(self):
+        print(1)
+    
+    def threeIps(self):
+        print(1)
+
+    def startBeepBoop(self):
+        self.Triangle.solve()
+        self.Circle.solve()
+        # check for Ips 
+        # if no IPs then need to solve for them some how?
+        num = getIps()
+        if num==0:
+            self.noIps()
+        elif num==1:
+            self.oneIps()
+        elif num==2:
+            self.twoIps()
+        elif num==3:
+            self.threeIps()
