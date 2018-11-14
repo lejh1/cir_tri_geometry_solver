@@ -40,30 +40,35 @@ class Circle():
             if self.cirValues["r"]:
                 self.cirValues["circumference"] = 2*math.pi*self.cirValues["r"]
             
+    # Sets the center of the circle
     def setCenter(self, x, y):
         self.cirValues["c"] = (x,y)
 
+    # sets the value thats not a tuple
     def setValue(self, name, value):
         if name in self.cirValues:
             self.cirValues[name] = value
 
+    # return value from a parameter name
     def getValue(self, name):
         if name in self.cirValues:
             return self.cirValues[name] 
 
+    # checks if the value exits    
     def checkValueExist(self, name):
         if name in self.cirValues:
             return True
         else: 
             return False
 
+    # Solver function 
     def solve(self):
         self.getDfromR()
         self.getRfromD()
         self.findArea()
         self.findCircumference()
 
-        
+    # Prints all values of Circle CLass
     def printValues(self):
         print(self.cirValues)
 

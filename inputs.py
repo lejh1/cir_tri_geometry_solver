@@ -1,5 +1,6 @@
 # Hold all possible input values 
 # Uses Triangle and Circle objects
+from sympy.geometry import intersection 
 from triangle import Triangle
 from circle import Circle
 class Inputs():
@@ -15,10 +16,11 @@ class Inputs():
         "ar2":0,
         "ar3":0
         }
-        self.numOfIPs = 0
+        self.numOfIPs = 0 # number of intersection points chosen by the user 
         self.Triangle = Triangle()
         self.Circle = Circle()
     
+    # Sets values that isnt a tuple
     def set_value(self, name, value): # check if name is valid and if it is then replace it 
         if name in self.inputs:
             self.inputs[name] = value
@@ -29,26 +31,30 @@ class Inputs():
         else:
             print("That parameter does not exist. Choose a new one.\n")
     
+    # Sets vertex
     def set_vertex(self, name, x, y):
         if self.Triangle.checkValueExist(name):
             self.Triangle.setVertex(name, x, y)
         else:
             print("That parameter does not exist. Choose a new one.\n")
-
+    # Sets Center
     def set_center(self, x , y): 
             self.Circle.setCenter(x, y)
 
+    # Sets Intersection Points
     def set_intersection_points(self, name, x, y):
         if name in self.inputs:
             self.inputs[name] = (x,y)
         else:
             print("That parameter does not exist. Choose a new one.\n")
 
+    # Prints all Values
     def printValues(self):
         print(self.inputs)
         self.Triangle.printValues()
         self.Circle.printValues()
     
+    # gets the value from a parameter name
     def get_value(self, name):
         if name in self.inputs:
             return self.inputs[name] 
@@ -59,12 +65,32 @@ class Inputs():
         else:
             print("That parameter does not exist. Choose a new one.\n")
     
+    # returns a dict with all the parameters
     def get_all(self):
         new_dict = self.inputs
         new_dict.update(self.Triangle.triValues)
         new_dict.update(self.Circle.cirValues)
         return new_dict
 
+    # Returns a list of all the not solvable parameters
+    def getNotSolvable(self):
+        notS = list()
+        d = self.get_all()
+        for key, value in d.items():
+            if not value:
+                notS.append(key)
+        if self.numOfIPs == 1:
+            notS.remove("ip2")
+            notS.remove("ip3")
+        elif self.numOfIPs == 2:
+            notS.remove("ip3")
+        if "GeoT" in notS:
+            notS.remove("GeoT")
+        if "GeoC" in notS:
+            notS.remove("GeoC")
+        return notS
+
+    # returns a count of the number of Intersection points
     def getIPs(self):
         count = 0
         for i in range(1,4):
@@ -73,6 +99,7 @@ class Inputs():
                 count += 1
         return count
 
+    # Returns a list with all the intersection points
     def getMissingIPs(self):
         missing = list()
         for i in range(1,4):
@@ -81,15 +108,18 @@ class Inputs():
                 missing.append(s)
         return missing
 
+    # Function to solve when only 1 intersection point is chosen
     def oneIps(self):
         if not self.get_value("ip1") and self.Circle.geoC and self.Triangle.GeoT:
             point = intersection(self.Circle.geoC, self.Triangle.GeoT)
             self.set_intersection_points("ip1", float(point[0]), float(point[1]))
         print(1)
     
+    # Function to solve when only 2 intersection points is chosen
     def twoIps(self):
         print(1)
     
+    # Function to solve when only 3 intersection points is chosen
     def threeIps(self):
         num = len(self.Triangle.getMissingVertices())
         # Get radius from input sympy geometry library
@@ -108,6 +138,7 @@ class Inputs():
         self.Circle.solve()
         print(1)
 
+    # Start solving function with a funny name because sometimes in life you gotta entertain yourself 
     def startBeepBoop(self):
         self.Triangle.solve()
         self.Circle.solve()

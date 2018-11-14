@@ -117,12 +117,6 @@ class Triangle():
         for i in range(1,4):
             if self.triValues["s"+str(i)] != 0:
                 count+=1
-        # if self.triValues["s1"] != 0:
-        #     count+=1
-        # if self.triValues["s2"] != 0:
-        #     count+=1
-        # if self.triValues["s3"] != 0:
-        #     count+=1
         return count
 
     # Returns number of found angles
@@ -207,6 +201,8 @@ class Triangle():
                 self.triValues["angles"][1] = lawOfCosinesSSS(self.triValues["s2"],self.triValues["s3"],self.triValues["s1"])
             if not self.triValues["angles"][2]:
                 self.triValues["angles"][2] = lawOfCosinesSSS(self.triValues["s3"],self.triValues["s1"],self.triValues["s2"])
+        if len(self.getMissingVertices()):
+            print("Need to solve for vertices using the known sides and angles ***********")
         self.findPerimeter()
         self.findArea()
 
