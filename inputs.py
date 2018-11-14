@@ -110,33 +110,42 @@ class Inputs():
 
     # Function to solve when only 1 intersection point is chosen
     def oneIps(self):
+        # need to get center from ip and radius
+        # Gets ip from center and radius 
         if not self.get_value("ip1") and self.Circle.geoC and self.Triangle.GeoT:
             point = intersection(self.Circle.geoC, self.Triangle.GeoT)
             self.set_intersection_points("ip1", float(point[0]), float(point[1]))
-        print(1)
+        self.Circle.solve()
     
     # Function to solve when only 2 intersection points is chosen
     def twoIps(self):
-        print(1)
-    
+        # need to get center from two ips and radius?
+        # need to get radius from center an ips
+        # need
+        # Get Intersection points from input sympy geometry library when center and radius is known 
+        if self.getIPs() != 2 and not num and self.Triangle.GeoT and self.Circle.GeoC:  
+            points = intersection(self.Circle.GeoC, self.Triangle.GeoT)
+            if len(points) == 2:
+                self.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
+                self.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
+        self.Circle.solve()
+
     # Function to solve when only 3 intersection points is chosen
     def threeIps(self):
-        num = len(self.Triangle.getMissingVertices())
         # Get radius from input sympy geometry library
-        if not self.Circle.cirValues["c"] and not num and self.Triangle.GeoT: 
+        if not self.Circle.cirValues["c"] and self.Triangle.GeoT: 
             p = self.Triangle.GeoT.incenter
             self.Circle.cirValues["c"] = (float(p[0]), float(p[1]))
         # Get radius from input sympy geometry library
-        if not self.Circle.cirValues["r"] and not num and self.Triangle.GeoT: 
+        if not self.Circle.cirValues["r"] and self.Triangle.GeoT: 
             self.Circle.cirValues["r"] = float(self.Triangle.GeoT.inradius)
         # Get Intersection points from input sympy geometry library
-        if self.getIPs() != 3 and not num and self.Triangle.GeoT:  
+        if self.getIPs() != 3 and self.Triangle.GeoT:  
             points = intersection(self.Triangle.GeoT.incircle, self.Triangle.GeoT)
             self.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
             self.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
             self.set_intersection_points("ip3",float(points[2][0]),float(points[2][1]))
         self.Circle.solve()
-        print(1)
 
     # Start solving function with a funny name because sometimes in life you gotta entertain yourself 
     def startBeepBoop(self):
