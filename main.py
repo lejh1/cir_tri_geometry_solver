@@ -1,6 +1,6 @@
 from inputs import Inputs
 from calcs import *
-from sympy.geometry import intersection 
+# from sympy.geometry import intersection 
 
 
 def main():

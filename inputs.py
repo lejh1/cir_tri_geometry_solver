@@ -131,7 +131,7 @@ class Inputs():
             self.Circle.cirValues["r"] = float(self.Triangle.GeoT.inradius)
         # Get Intersection points from input sympy geometry library
         if self.getIPs() != 3 and not num and self.Triangle.GeoT:  
-            points = intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)
+            points = intersection(self.Triangle.GeoT.incircle, self.Triangle.GeoT)
             self.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
             self.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
             self.set_intersection_points("ip3",float(points[2][0]),float(points[2][1]))
