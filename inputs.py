@@ -15,6 +15,7 @@ class Inputs():
         "ar2":0,
         "ar3":0
         }
+        self.numOfIPs = 0
         self.Triangle = Triangle()
         self.Circle = Circle()
     
@@ -72,29 +73,54 @@ class Inputs():
                 count += 1
         return count
 
-    def noIps(self):
-        print(1)
+    def getMissingIPs(self):
+        missing = list()
+        for i in range(1,4):
+            s = "ip" + str(i)
+            if not self.inputs[s]:
+                missing.append(s)
+        return missing
 
     def oneIps(self):
+        if not self.get_value("ip1") and self.Circle.geoC and self.Triangle.GeoT:
+            point = intersection(self.Circle.geoC, self.Triangle.GeoT)
+            self.set_intersection_points("ip1", float(point[0]), float(point[1]))
         print(1)
     
     def twoIps(self):
         print(1)
     
     def threeIps(self):
+        num = len(self.Triangle.getMissingVertices())
+        # Get radius from input sympy geometry library
+        if not self.Circle.cirValues["c"] and not num and self.Triangle.GeoT: 
+            p = self.Triangle.GeoT.incenter
+            self.Circle.cirValues["c"] = (float(p[0]), float(p[1]))
+        # Get radius from input sympy geometry library
+        if not self.Circle.cirValues["r"] and not num and self.Triangle.GeoT: 
+            self.Circle.cirValues["r"] = float(self.Triangle.GeoT.inradius)
+        # Get Intersection points from input sympy geometry library
+        if self.getIPs() != 3 and not num and self.Triangle.GeoT:  
+            points = intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)
+            self.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
+            self.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
+            self.set_intersection_points("ip3",float(points[2][0]),float(points[2][1]))
+        self.Circle.solve()
         print(1)
 
     def startBeepBoop(self):
         self.Triangle.solve()
         self.Circle.solve()
         # check for Ips 
-        # if no IPs then need to solve for them some how?
-        num = getIps()
-        if num==0:
-            self.noIps()
-        elif num==1:
+        num =self.numOfIPs
+        if num==1:
             self.oneIps()
         elif num==2:
             self.twoIps()
         elif num==3:
             self.threeIps()
+
+
+    # Still needed 
+    # find vertices from sides and angles
+    # algorithm for twoIps

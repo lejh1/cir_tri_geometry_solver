@@ -1,5 +1,6 @@
 # Hold obvious parameters for the circle
 import math
+from sympy.geometry import Circle as c, Point 
 
 class Circle():
     def __init__(self, *args):
@@ -10,6 +11,12 @@ class Circle():
             "ar_cir": 0, 
             "circumference": 0,
         }
+        self.geoC = None
+
+    # Creating a Circle using the sympy module for the purposes of intersections and such 
+    def makeGeoT(self):
+        if self.cirValues["r"] and self.cirValues["c"] :
+            self.GeoC = c(Point(self.cirValues["c"][0],self.cirValues["c"][1]), self.cirValues["r"] )
 
     # Get diameter from radius
     def getDfromR(self):

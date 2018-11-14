@@ -1,7 +1,7 @@
 # Hold obvious parameters for the Triangle.
 # Not using the sympy Triangle class because it has limitations so decided to build my own class 
 from calcs import *
-from sympy.geometry import Triangle as t, Point
+from sympy.geometry import Triangle as t, Point 
 class Triangle():
     def __init__(self):
         # initialize all empty parameters

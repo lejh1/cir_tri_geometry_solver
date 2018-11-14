@@ -1,5 +1,7 @@
 from inputs import Inputs
 from calcs import *
+from sympy.geometry import intersection 
+
 
 def main():
     inputs = Inputs()
@@ -17,7 +19,16 @@ def main():
     # print(inputs.get_value("a1"))
     # print(inputs.get_value("s1"))
     inputs.Triangle.solve()
-    inputs.Triangle.printValues()
+    points = intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)
+    print(points)
+    inputs.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
+    inputs.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
+    inputs.set_intersection_points("ip3",float(points[2][0]),float(points[2][1]))
+    inputs.printValues()
+    # print(inputs.Triangle.GeoT.incircle)
+    # print(float(inputs.Triangle.GeoT.inradius))
+    # print(float(intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)[0][0]))
+
 
     
 if __name__ == '__main__':
