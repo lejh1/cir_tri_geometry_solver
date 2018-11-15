@@ -23,6 +23,8 @@ class Triangle():
     def makeGeoT(self):
         if not len(self.getMissingVertices()):
             self.GeoT = t((self.triValues["v1"][0],self.triValues["v1"][1]),(self.triValues["v2"][0],self.triValues["v2"][1]),(self.triValues["v3"][0],self.triValues["v3"][1]))
+        elif self.countSides() == 3:
+            self.GeoT = t(sss=(self.triValues["s1"],self.triValues["s2"],self.triValues["s3"]))
 
     # If two angles are known, fill in the last one 
     def sumOfAllAngles(self):
@@ -139,7 +141,6 @@ class Triangle():
             self.triValues["s2"] = distanceFormula(self.triValues["v1"][0],self.triValues["v1"][1],self.triValues["v3"][0],self.triValues["v3"][1])
 
     def solve(self):
-        self.makeGeoT()
         self.solveSidesWVertices() # Solve for any missing sides from vertices 
         # 2 side 1 angle
         if self.countSides()==2 and self.countAngles()==1:
@@ -205,4 +206,5 @@ class Triangle():
             print("Need to solve for vertices using the known sides and angles ***********")
         self.findPerimeter()
         self.findArea()
+        self.makeGeoT()
 

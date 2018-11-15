@@ -1,5 +1,6 @@
 from inputs import Inputs
 from calcs import *
+from ast import literal_eval 
 # from sympy.geometry import intersection 
 
 
@@ -14,29 +15,72 @@ def main():
     inputs.set_value("v1", (0,0))
     inputs.set_value("v2", (3,0))
     inputs.set_value("v3", (3,3))
-    inputs.numOfIPs= 3
-    # inputs.Triangle.simpleRun()
-    # inputs.printValues()
-    # print(inputs.get_value("a1"))
-    # print(inputs.get_value("s1"))
+    inputs.numOfIPs= 3 # number of intersection points
     inputs.startBeepBoop()
-    # inputs.Triangle.solve()
-    # inputs.Circle.solve()
-    # points = intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)
-    # print(points)
-    # inputs.set_intersection_points("ip1",float(points[0][0]),float(points[0][1]))
-    # inputs.set_intersection_points("ip2",float(points[1][0]),float(points[1][1]))
-    # inputs.set_intersection_points("ip3",float(points[2][0]),float(points[2][1]))
     inputs.printValues()
     print(inputs.getNotSolvable())
-    # print(inputs.Triangle.GeoT.incircle)
-    # print(float(inputs.Triangle.GeoT.inradius))
-    # print(float(intersection(inputs.Triangle.GeoT.incircle, inputs.Triangle.GeoT)[0][0]))
-
-
     
 if __name__ == '__main__':
     main()
+
+def menuInputs():
+    inputs = Inputs()
+    sel = input("Which problem would you like to solve? (1,2,3): ")
+    if sel not in [1,2,3]:
+        sys.exit("Error incorrect value. Exiting")
+    elif sel == 1:
+        inputs.numOfIPs = 1
+        while(True):
+            print("*** v1, v2, v3, s1, s2, s3, a1, a2, a3, ar_tri, per_tri, r, c, d, ar_cir, circumference ***")
+            sel = input("Please select a parameter to enter from the above list or type \"exit\" to quit: ")
+            if sel not in ["v1", "v2", "v3", "s1", "s2", "s3", "a1", "a2", "a3", "ar_tri", "per_tri", "r", "c", "d", "ar_cir" , "circumference"]:
+                print("Parameter does not exist, try again!")
+            elif sel == "exit":
+                break
+            elif sel in ["v1", "v2", "v3", "c"]:  
+                val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
+                inputs.set_value(sel,literal_eval(val))
+            else:
+                val = input("Input value for "+sel+": ")
+                inputs.set_value(sel,float(val))
+
+    elif sel == 2:
+        inputs.numOfIPs = 2
+        while(True):
+            print("*** v1, v2, v3, s1, s2, s3, a1, a2, a3, ar_tri, per_tri, r, c, d, ar_cir, circumference, ip1, ip2, arc1, arc2, ar1, ar2 ***")
+            sel = input("Please select a parameter to enter from the above list or type \"exit\" to quit: ")
+            if sel not in ["v1", "v2", "v3", "s1", "s2", "s3", "a1", "a2", "a3", "ar_tri", "per_tri", "r", "c", "d", "ar_cir" , "circumference", "ip1", "ip2", "arc1", "arc2", "ar1", "ar2"]:
+                print("Parameter does not exist, try again!")
+            elif sel == "exit":
+                break
+            elif sel in ["v1", "v2", "v3", "c"]:  
+                val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
+                inputs.set_value(sel,literal_eval(val))
+            else:
+                val = input("Input value for "+sel+": ")
+                inputs.set_value(sel,float(val))
+                
+    elif sel == 3:
+        inputs.numOfIPs = 3
+        while(True):
+            print("*** v1, v2, v3, s1, s2, s3, a1, a2, a3, ar_tri, per_tri, r, c, d, ar_cir, circumference, ip1, ip2, ip3, arc1, arc2, arc3, ar1, ar2, ar3 ***")
+            sel = input("Please select a parameter to enter from the above list or type \"exit\" to quit: ")
+            if sel not in ["v1", "v2", "v3", "s1", "s2", "s3", "a1", "a2", "a3", "ar_tri", "per_tri", "r", "c", "d", "ar_cir" , "circumference", "ip1", "ip2", "ip3", "arc1", "arc2", "arc3", "ar1", "ar2", "ar3"]:
+                print("Parameter does not exist, try again!")
+            elif sel == "exit":
+                break
+            elif sel in ["v1", "v2", "v3", "c"]:  
+                val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
+                inputs.set_value(sel,literal_eval(val))
+            else:
+                val = input("Input value for "+sel+": ")
+                inputs.set_value(sel,float(val))
+
+    inputs.startBeepBoop()
+    print("Solved Terms:")
+    inputs.printValues()
+    print("Unsolvable Terms:")
+    print(inputs.getNotSolvable())
 
 
 

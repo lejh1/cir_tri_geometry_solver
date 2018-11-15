@@ -164,3 +164,4 @@ class Inputs():
     # Still needed 
     # find vertices from sides and angles
     # algorithm for twoIps
+    # Getting user inputs? 
