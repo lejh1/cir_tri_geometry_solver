@@ -39,7 +39,10 @@ def menuInputs():
                 break
             elif sel in ["v1", "v2", "v3", "c"]:  
                 val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
-                inputs.set_value(sel,literal_eval(val))
+                if sel == "c":
+                    inputs.set_center(sel,literal_eval(val))
+                else:
+                    inputs.set_vertex(sel,literal_eval(val))
             else:
                 val = input("Input value for "+sel+": ")
                 inputs.set_value(sel,float(val))
@@ -55,7 +58,13 @@ def menuInputs():
                 break
             elif sel in ["v1", "v2", "v3", "c"]:  
                 val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
-                inputs.set_value(sel,literal_eval(val))
+                if sel == "c":
+                    inputs.set_center(sel,literal_eval(val))
+                else:
+                    inputs.set_vertex(sel,literal_eval(val))
+            elif sel in ["ip1","ip2","ip3"]:
+                val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
+                inputs.set_intersection_points(sel,literal_eval(val))
             else:
                 val = input("Input value for "+sel+": ")
                 inputs.set_value(sel,float(val))
@@ -71,7 +80,13 @@ def menuInputs():
                 break
             elif sel in ["v1", "v2", "v3", "c"]:  
                 val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
-                inputs.set_value(sel,literal_eval(val))
+                if sel == "c":
+                    inputs.set_center(sel,literal_eval(val))
+                else:
+                    inputs.set_vertex(sel,literal_eval(val))
+            elif sel in ["ip1","ip2","ip3"]:
+                val = input("Input value for "+sel+" coordinate in form of \"(#,#)\": ")
+                inputs.set_intersection_points(sel,literal_eval(val))
             else:
                 val = input("Input value for "+sel+": ")
                 inputs.set_value(sel,float(val))
