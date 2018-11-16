@@ -13,14 +13,14 @@ def main():
     # inputs.set_value("s1", 3)
     # inputs.set_value("s2", 3)
     # # inputs.set_value("a2", 45)
-    # inputs.set_value("v1", (0,0))
-    # inputs.set_value("v2", (3,0))
-    # inputs.set_value("v3", (3,3))
-    # inputs.numOfIPs= 3 # number of intersection points
-    # inputs.startBeepBoop()
-    # inputs.printValues()
-    # print(inputs.getNotSolvable())
-    menuInputs()
+    inputs.set_value("v1", (0,0))
+    inputs.set_value("v2", (0,3))
+    inputs.set_value("v3", (3,3))
+    inputs.numOfIPs= 3 # number of intersection points
+    inputs.startBeepBoop()
+    inputs.printValues()
+    print(inputs.getNotSolvable())
+    # menuInputs()
 
 
 def menuInputs():
