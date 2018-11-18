@@ -11,10 +11,10 @@ class Circle():
             "ar_cir": 0, 
             "circumference": 0,
         }
-        self.geoC = None
+        self.GeoC = None
 
     # Creating a Circle using the sympy module for the purposes of intersections and such 
-    def makeGeoT(self):
+    def makeGeoC(self):
         if self.cirValues["r"] and self.cirValues["c"] :
             self.GeoC = c(Point(self.cirValues["c"][0],self.cirValues["c"][1]), self.cirValues["r"] )
 
@@ -32,13 +32,13 @@ class Circle():
     def findArea(self):
         if not self.cirValues["ar_cir"]:
             if self.cirValues["r"]:
-                self.cirValues["ar_cir"] = pow(self.cirValues["r"],2) * math.pi 
+                self.cirValues["ar_cir"] = round((pow(self.cirValues["r"],2) * math.pi ),2)
 
     # Find the given circumference
     def findCircumference(self):
         if not self.cirValues["circumference"]:
             if self.cirValues["r"]:
-                self.cirValues["circumference"] = 2*math.pi*self.cirValues["r"]
+                self.cirValues["circumference"] = round((2*math.pi*self.cirValues["r"]),2)
             
     # Sets the center of the circle
     def setCenter(self, x, y):
@@ -67,6 +67,7 @@ class Circle():
         self.getRfromD()
         self.findArea()
         self.findCircumference()
+        self.makeGeoC()
 
     # Prints all values of Circle CLass
     def printValues(self):

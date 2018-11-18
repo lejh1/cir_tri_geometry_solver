@@ -16,10 +16,11 @@ def main():
     inputs.set_value("v1", (0,0))
     inputs.set_value("v2", (0,3))
     inputs.set_value("v3", (3,3))
+    # inputs.set_value("c", (1.2,2))
+
     inputs.numOfIPs= 3 # number of intersection points
     inputs.startBeepBoop()
-    inputs.printValues()
-    print(inputs.getNotSolvable())
+    inputs.printPrompt()
     # menuInputs()
 
 
